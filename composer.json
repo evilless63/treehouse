@@ -9,11 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "cviebrock/eloquent-sluggable": "^8.0",
+        "evilless63/transliterate": "dev-master",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "torann/geoip": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -44,7 +47,12 @@
             "Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/evilless63/Transliterate"
+        }
+    ],
     "prefer-stable": true,
     "scripts": {
         "post-autoload-dump": [
