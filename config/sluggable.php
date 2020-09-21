@@ -63,8 +63,8 @@ return [
 
     // 'method' => null,
     //на лету преобразовываем в транслит...
-    'method' => function($string, $sep ) {
-              return preg_replace('/[^a-z]+/i', $sep, Transliterate::make($string));
+    'method' => function($string, $separator) {
+        return Transliterate::slugify($string);
     },
 
     /**
