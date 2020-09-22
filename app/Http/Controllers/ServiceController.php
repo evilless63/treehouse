@@ -11,7 +11,7 @@ class ServiceController extends Controller
     public function postRequestCategoryFrom1c(Request $request) {
         //Обработка категорий
 
-        if($request->headers->has('categories')){
+        // if($request->headers->has('categories')){
             try {
                 $stack = $request->toArray();   
                 foreach($stack as $s) {
@@ -30,7 +30,7 @@ class ServiceController extends Controller
                 abort(500);
             }
             
-        }
+        // }
 
         // //Обработка товаров
         // if($request->headers->has('products')) {
