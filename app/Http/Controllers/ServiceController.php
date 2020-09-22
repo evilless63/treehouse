@@ -19,9 +19,8 @@ class ServiceController extends Controller
                 // Log::info($stack);  
                 foreach($stack as $s) {
                     $category = Category::where('category_id', $s['category_id'])->first();
-                    Log::info($category);
                     $transliterator = new Transliterator(Map::LANG_RU, Map::DEFAULT);
-                    $s['slug'] = preg_replace('/^[a-zа-я0-9_]$/', '', strtolower($transliterator->slugify($s['name'])));
+                    $s['slug'] = strtolower($transliterator->slugify(preg_replace('/^[a-zа-я0-9_]$/', '', $s['name'])));
                     // Log::info($s['category_id'] . ' ' . $category]);
                     if($category == null) {
                         $category = new Category();             
