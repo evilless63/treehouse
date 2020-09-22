@@ -19,7 +19,7 @@ class ServiceController extends Controller
                 // Log::info($stack);  
                 foreach($stack as $s) {
                     $category = Category::where('category_id', $s['category_id'])->first();
-                    $transliterator = new Transliterator(Map::LANG_RU, Map::common);
+                    $transliterator = new Transliterator(Map::LANG_RU, Map::DEFAULT);
                     $s['slug'] = strtolower($transliterator->slugify($s['name']));
                     // Log::info($s['category_id'] . ' ' . $category]);
                     if($category == null) {
