@@ -17,18 +17,12 @@ class Category extends Model
     protected $guarded = [];
 
     public function products() {
-        return $this->hasMany('App\Models\Product', 'category_id');
+        return $this->hasMany('App\Models\Product', 'category_id', 'category_id');
     }
     
-    public function parent()
+    public function childs()
     {
-        return $this->belongsTo('App\Models\Category', 'parent_id')->with('parent');
+        return $this->hasMany('App\Models\Category', 'parent_id', 'category_id');
     }
-
-    public function children()
-    {
-        return $this->hasMany('App\Models\Category', 'parent_id')->with('children');
-    }
-
     // Выгружаем из responce json (из тз 1с) в бд, проверяем изменения. Если надо добавляем новые записи.
 }
