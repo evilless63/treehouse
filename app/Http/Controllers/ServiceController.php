@@ -7,7 +7,7 @@ use App\Models\Category;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use ElForastero\Transliterate\Transliterator;
-
+use ElForastero\Transliterate\Map;
 class ServiceController extends Controller
 {
     public function postRequestCategoryFrom1c(Request $request) {
