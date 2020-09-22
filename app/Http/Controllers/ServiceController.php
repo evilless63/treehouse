@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Exception;
-use Transliterate;
 use Illuminate\Support\Facades\Log;
+use ElForastero\Transliterate\Transliterator;
 
 class ServiceController extends Controller
 {
