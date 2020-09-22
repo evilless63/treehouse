@@ -19,17 +19,16 @@ class Category extends Model
     public function products() {
         return $this->hasMany('App\Models\Product', 'category_id');
     }
-    // public $incrementing = false;
     
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Category', 'parent_id')->with('parent');
+    }
 
-    // public function sluggable()
-    // {
-    //     return [
-    //         'url-slug' => [
-    //             'source' => 'slug'
-    //         ]
-    //     ];
-    // }
+    public function children()
+    {
+        return $this->hasMany('App\Models\Category', 'parent_id')->with('children');
+    }
 
     // Выгружаем из responce json (из тз 1с) в бд, проверяем изменения. Если надо добавляем новые записи.
 }
