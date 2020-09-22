@@ -20,6 +20,7 @@ class ServiceController extends Controller
                     $category = Category::where('category_id', $s['category_id'])->first();
                     $transliterator = new Transliterator(Map::LANG_RU, Map::GOST_7_79_2000);
                     $s['name-translite'] = $transliterator->make($s['name']);
+                    Log::info($s);
                     if($category == null) {
                         $category = new Category();
                         $category->save($s);
