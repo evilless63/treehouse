@@ -7,6 +7,7 @@ use App\Models\Category;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use ElForastero\Transliterate\Transliterator;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 use ElForastero\Transliterate\Map;
 class ServiceController extends Controller
 {
