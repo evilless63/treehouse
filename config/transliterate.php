@@ -36,7 +36,7 @@ return [
     */
     'custom_maps' => [
        'ru' => [
-           'common_ru' => dirname(__DIR__) . '/resources/maps/ru/russian.php',
+           'common_ru' => base_path('resources/maps/ru/russian.php'),
        ],
     ],
 
