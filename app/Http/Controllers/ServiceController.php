@@ -8,8 +8,9 @@ use Exception;
 
 class ServiceController extends Controller
 {
-    public function getRequestFrom1c(Request $request) {
+    public function postRequestCategoryFrom1c(Request $request) {
         //Обработка категорий
+
         if($request->headers->has('categories')){
             try {
                 $stack = $request->toArray();   
@@ -31,9 +32,9 @@ class ServiceController extends Controller
             
         }
 
-        //Обработка товаров
-        if($request->headers->has('products')) {
+        // //Обработка товаров
+        // if($request->headers->has('products')) {
 
-        }
+        // }
     }
 }
