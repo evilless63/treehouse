@@ -35,9 +35,9 @@ return [
     |
     */
     'custom_maps' => [
-//        'uk' => [
-//            'common' => dirname(__DIR__) . '/app/path/to/maps/uk/common.php',
-//        ],
+       'ru' => [
+           'common_ru' => dirname(__DIR__) . '/resources/maps/ru/russian.php',
+       ],
     ],
 
     /*

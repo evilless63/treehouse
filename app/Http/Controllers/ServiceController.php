@@ -19,7 +19,8 @@ class ServiceController extends Controller
                 // Log::info($stack);  
                 foreach($stack as $s) {
                     $category = Category::where('category_id', $s['category_id'])->first();
-                    $s['name-translite'] = Transliterate::make($s['name']);
+                    $transliterator = new Transliterator('ru', 'common_ru');
+                    $s['name-translite'] = $transliterator->make($s['name']);
                     if($category == null) {
                         $category = new Category();
                         $category->save($s);
