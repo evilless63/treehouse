@@ -12,7 +12,7 @@ class ServiceController extends Controller
 {
     public function postRequestCategoryFrom1c(Request $request) {
         //Обработка категорий
-
+dd(dirname(__DIR__));
         // if($request->headers->has('categories')){
             try {
                 $stack = $request->toArray(); 
