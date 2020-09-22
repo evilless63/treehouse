@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Exception;
+use Transliterate;
 use Illuminate\Support\Facades\Log;
 
 class ServiceController extends Controller
@@ -15,9 +16,10 @@ class ServiceController extends Controller
         // if($request->headers->has('categories')){
             try {
                 $stack = $request->toArray(); 
-                Log::info($stack);  
+                // Log::info($stack);  
                 foreach($stack as $s) {
                     $category = Category::where('category_id', $s['category_id'])->first();
+                    $stack['name-translite'] = Transliterate::make($stack['name']);
                     if($category == null) {
                         $category = new Category();
                         $category->save($s);
@@ -29,6 +31,7 @@ class ServiceController extends Controller
                 return 'all ok';
                 
             } catch (Exception $e) {
+                Log::info($e); 
                 abort(500);
             }
             

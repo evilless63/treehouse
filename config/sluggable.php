@@ -1,6 +1,6 @@
 <?php
 
-use Transliterate;
+use ElForastero\Transliterate;
 
 return [
 
@@ -63,9 +63,9 @@ return [
 
     // 'method' => null,
     //на лету преобразовываем в транслит...
-    'method' => function($string, $separator) {
-        return Transliterate::slugify($string);
-    },
+    // 'method' => function($string, $separator) {
+    //     return Transliterate::slugify($string);
+    // },
 
     /**
      * Separator to use when generating slugs.  Defaults to a hyphen.
