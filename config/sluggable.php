@@ -61,7 +61,7 @@ return [
      *    'method' => array('Str','slug'),
      */
 
-    // 'method' => null,
+    'method' => null,
     //на лету преобразовываем в транслит...
     // 'method' => function($string, $separator) {
     //     return Transliterate::slugify($string);

@@ -16,6 +16,7 @@ class Category extends Model
     protected $keyType = 'string';
     protected $guarded = '';
     public $incrementing = false;
+    
 
     public function sluggable()
     {
