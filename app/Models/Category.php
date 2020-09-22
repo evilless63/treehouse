@@ -15,6 +15,10 @@ class Category extends Model
     // protected $primaryKey = 'category_id';
     // protected $keyType = 'string';
     protected $guarded = [];
+
+    public function products() {
+        return $this->hasMany('App\Models\Product', 'category_id');
+    }
     // public $incrementing = false;
     
 
