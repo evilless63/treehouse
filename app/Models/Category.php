@@ -14,7 +14,7 @@ class Category extends Model
 
     protected $primaryKey = 'category_id';
     protected $keyType = 'string';
-    protected $guarded = '';
+    protected $guarded = [];
     public $incrementing = false;
     
 
