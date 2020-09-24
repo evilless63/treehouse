@@ -49,5 +49,7 @@ class DemoController extends Controller
         Log::info($response->getStatusCode());
         Log::info($stringBody);
         // $response = $client->request('POST', 'test');
+
+        return redirect()->back()->with('success', $stringBody); 
     }
 }
