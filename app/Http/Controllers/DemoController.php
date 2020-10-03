@@ -17,22 +17,17 @@ class DemoController extends Controller
         return view('demo.category')->with(['categories' => $categories]);
     }
 
+    public function registerNewCounteragent() {
+        return view('demo.register');
+    }
+
+    public function policy() {
+        return view('demo.policy');
+    }
+
     public function postOrderTo1c(Request $request) {
         $client = new Client();
 
-        // $promise = $client->requestAsync('POST', 'http://31.128.156.218:55315/ushp/hs/obmen/get-orders', [
-        //     'auth' => ['Анна', '17382256Ksu@'],
-        //     'body' => $request->product_id
-        // ]);
-        // $promise->then(
-        //     function (ResponseInterface $res) {
-        //         Log::info($res->getStatusCode());
-        //     },
-        //     function (RequestException $e) {
-        //         Log::info($e->getMessage());
-        //         Log::info($e->getRequest()->getMethod());
-        //     }
-        // );
         try {
             $response = $client->request('POST', 'http://31.128.156.218:55315/ushp/hs/obmen/get-orders', [
                 'auth' => ['Анна', '17382256Ksu@'],
@@ -46,10 +41,7 @@ class DemoController extends Controller
         $body = $response->getBody();
         $stringBody = (string) $body;
 
-        Log::info($response->getStatusCode());
-        Log::info($stringBody);
-        // $response = $client->request('POST', 'test');
-
         return redirect()->back()->with('success', $stringBody); 
     }
+
 }

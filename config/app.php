@@ -177,6 +177,8 @@ return [
 
         ElForastero\Transliterate\ServiceProvider::class,
 
+        Mews\Captcha\CaptchaServiceProvider::class,
+
     ],
 
     /*
@@ -229,7 +231,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Transliterate' => ElForastero\Transliterate\Facade::class,
-
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
     ],
 
 ];
