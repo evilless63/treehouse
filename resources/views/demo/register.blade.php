@@ -1,7 +1,10 @@
 
 <h2>Юридическое лицо (ИП, ООО и так далее)</h2>
 
-<form>
+<form id="counteragentForm">
+
+    @csrf
+
     <label for="counteragentInn">ИНН Организации:</label>
     <input type="text" id="counteragentInn" />
     <button id="getDataByInn">Найти по ИНН</button>
@@ -96,56 +99,62 @@
         <input type="checkbox" />       
     </div>
 
+    <input type="submit" value="Зарегестрировать" />
+
 </form>
 
 <h2>Физическое лицо</h2>
 
-<form>
+<form id="privatePersonForm">
+
+    @csrf
 
     <label for="privatePersonRegion">Регион:</label>
-    <input type="text" id="privatePersonRegion" />
+    <input type="text" id="privatePersonRegion" name="privatePersonRegion" />
 
     <label for="privatePersonCity">Город:</label>
-    <input type="text" id="privatePersonCity" />
+    <input type="text" id="privatePersonCity" name="privatePersonCity"/>
 
     <label for="privatePersonContactUserSurname">Фамилия:</label>
-    <input type="text" id="privatePersonContactUserSurname" />
+    <input type="text" id="privatePersonContactUserSurname" name="privatePersonContactUserSurname" />
 
     <label for="privatePersonContactUserName">Имя:</label>
-    <input type="text" id="privatePersonContactUserName" />
+    <input type="text" id="privatePersonContactUserName" name="privatePersonContactUserName" />
 
     <label for="privatePersonContactUserPatronymic">Отчество:</label>
-    <input type="text" id="privatePersonContactUserPatronymic" />
+    <input type="text" id="privatePersonContactUserPatronymic" name="privatePersonContactUserPatronymic"/>
 
     <label for="privatePersonContactPhone">Контактный телефон:</label>
-    <input type="text" id="privatePersonContactPhone" />
+    <input type="text" id="privatePersonContactPhone" name="privatePersonContactPhone" />
 
     <div>
         <label for="privatePersonUsePhoneNotifications">Использовать телефон для уведомлений</label>
-        <input type="checkbox" id="privatePersonUsePhoneNotifications" />       
+        <input type="checkbox" id="privatePersonUsePhoneNotifications" name="privatePersonUsePhoneNotifications"/>       
     </div>
 
     <label for="privatePersonContactPhone">Email:</label>
-    <input type="text" id="privatePersonEmail" />
+    <input type="text" id="privatePersonEmail" name="privatePersonEmail" />
 
     <label for="privatePersonPassword">Пароль (не менее 3х символов):</label>
-    <input type="password" id="privatePersonPassword" />
+    <input type="password" id="privatePersonPassword" name="privatePersonPassword" />
 
     <label for="privatePersonPassword">Подтверждение пароля:</label>
-    <input type="password" id="privatePersonPasswordRepeat" />
+    <input type="password" id="privatePersonPasswordRepeat" name="privatePersonPasswordRepeat" />
 
     <label for="privatePersonPassword">Введите код (5 цифр):</label>
     <div class="form-group" id="refreshrecapcha1">
     {!!captcha_img('flat')!!}
     </div>
-    <input type="text" name="captcha" data-validation="required">
+    <input type="text" name="captcha" data-validation="required" name="captcha" >
     <a id="refreshCapchaButton1" href="javascript:void(0)">Обновить код</a>
     
 
     <div>
     <label>Я согласен(согласна) с <a href="{{route('policy')}}">политикой конфиденциальности</a></label>
-        <input type="checkbox"/>       
+        <input type="checkbox" name="policy"/>       
     </div>
+
+    <input type="submit" value="Зарегестрировать" />
 
 </form>
 
@@ -158,6 +167,12 @@
     mask: '+{7}(000)000-00-00'
     }
     let mask = IMask(element, maskOptions)
+
+    let element1 = document.getElementById('privatePersonContactPhone')
+    let maskOptions1 = {
+    mask: '+{7}(000)000-00-00'
+    }
+    let mask1 = IMask(element1, maskOptions1)
 
     //Обновление капчи
     const buttonRecapcha = document.getElementById('refreshCapchaButton')
@@ -260,12 +275,32 @@
             console.log('something is wrong !')
         }
         
-
-        // .then(response => response.text())
-        // .then(result => console.log(result) )
-        // .catch(error => console.log("error", error))
-
-        
     })
     
+    counteragentForm.onsubmit = async (e) => {
+        e.preventDefault();
+
+        let response = await fetch('/register-counteragent', {
+        method: 'POST',
+        body: new FormData(counteragentForm)
+        });
+
+        let result = await response.json();
+
+        console.log(result.message)
+    };
+
+    privatePersonForm.onsubmit = async (e) => {
+        e.preventDefault()
+
+        let response = await fetch('/register-counteragent', {
+        method: 'POST',
+        body: new FormData(privatePersonForm)
+        })
+
+        let result = await response.json()
+
+        console.log(result.message)
+    }
+
 </script>

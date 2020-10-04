@@ -24,4 +24,6 @@ Route::get('/refereshcapcha', 'App\Http\Controllers\HelperController@refereshCap
 Route::get('/getdemodata', 'App\Http\Controllers\DemoController@getDemoData');
 Route::get('/register', 'App\Http\Controllers\DemoController@registerNewCounteragent');
 Route::get('/policy', 'App\Http\Controllers\DemoController@policy')->name('policy');
+
 Route::post('/make-order', 'App\Http\Controllers\DemoController@postOrderTo1c')->name('make-order');
+Route::post('/register-counteragent', 'App\Http\Controllers\DemoController@postCounteragentRegisterTo1c')->name('register-counteragent');

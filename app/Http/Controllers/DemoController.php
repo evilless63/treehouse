@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Counteragent;
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
@@ -42,6 +43,25 @@ class DemoController extends Controller
         $stringBody = (string) $body;
 
         return redirect()->back()->with('success', $stringBody); 
+    }
+
+    public function postCounteragentRegisterTo1c(Request $request) {
+
+        $client = new Client();
+
+        try {
+            $response = $client->request('POST', 'http://31.128.156.218:55315/ushp/hs/obmen/register-counteragent', [
+                'auth' => ['Анна', '17382256Ksu@'],
+                'body' => $request
+            ]);
+        } catch (Exception $e) {
+            Log::info($e); 
+            return response('ERROR', 500);
+        }
+
+        $body = $response->getBody()->read(4);
+
+        return $body; 
     }
 
 }
