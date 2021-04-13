@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCounteragentsTable extends Migration
+class CreateColorVariationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateCounteragentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('counteragents', function (Blueprint $table) {
+        Schema::create('color_variations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->integer('color_id');
+            $table->integer('product_id');
+            $table->string('main_img')->nullable();
         });
     }
 
@@ -26,6 +29,6 @@ class CreateCounteragentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('counteragents');
+        Schema::dropIfExists('color_variations');
     }
 }
