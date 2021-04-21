@@ -104,6 +104,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
+        $category = Category::find($id);
         $haveBeenUpdated = $category->update($request->all());
         foreach ($request->input('localization', []) as $k => $i) {
             $locale = $category->localizations()->where('lang', $k)
