@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\SizeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +35,10 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function(){
     Route::resources([
         'categories' => CategoryController::class,
-        'products' => ProductController::class
+        'products' => ProductController::class,
+        'colors' => ColorController::class,
+        'sizes' => SizeController::class,
     ]);
+
+    Route::any('/categories/{id}/replicate', [CategoryController::class, 'replicate'])->name('categories.replicate');
 });

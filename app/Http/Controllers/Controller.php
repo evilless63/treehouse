@@ -8,6 +8,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Color;
+use App\Models\Size;
+use LaravelLocalization;
 
 class Controller extends BaseController
 {
@@ -15,9 +18,15 @@ class Controller extends BaseController
 
     protected $categories;
     protected $products;
+    protected $locales;
+    protected $colors;
+    protected $sizes;
     function __construct()
     {
         $this->categories = Category::all();  
-        $this->products = Product::all();  
+        $this->products = Product::all(); 
+        $this->locales = LaravelLocalization::getSupportedLanguagesKeys(); 
+        $this->colors = Color::all();
+        $this->sizes = Size::all();
     }
 }

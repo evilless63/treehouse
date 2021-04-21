@@ -14,7 +14,9 @@ class SizeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.size.index')->with([
+            'sizes' => $this->sizes
+        ]);
     }
 
     /**
@@ -55,9 +57,21 @@ class SizeController extends Controller
      * @param  \App\Models\Size  $size
      * @return \Illuminate\Http\Response
      */
-    public function edit(Size $size)
+    public function edit($id)
     {
-        //
+        $current_size = Size::find($id);
+        $lang_field_sets = collect();
+        foreach ($this->locales as $locale) {
+            $lang_field_sets->add($current_size
+                ->localization()
+                ->where('lang', $locale)
+                ->first());
+        }
+
+        return view('admin.size.edit')->with([
+            'current_size' => $current_size,
+            'lang_field_sets' => $lang_field_sets
+        ]);
     }
 
     /**
@@ -69,7 +83,16 @@ class SizeController extends Controller
      */
     public function update(Request $request, Size $size)
     {
-        //
+        $haveBeenUpdated = $size->update($request->all());
+        foreach ($request->input('localization', []) as $k => $i) {
+            $locale = $size->localizations()->where('lang', $k)
+                ->update($i + ['lang' => $k]);
+        }
+        if ($haveBeenUpdated) {
+            return redirect()->route('sizes.index')->with('success', __('adminpanel.action_success'));
+        } else {
+            return redirect()->route('sizes.index')->with('error', __('adminpanel.action_error'));
+        }
     }
 
     /**

@@ -62,10 +62,20 @@ class ProductController extends Controller
     public function edit($id)
     {
         $current_product = Product::find($id);
+
+        $lang_field_sets = collect();
+        foreach ($this->locales as $locale) {
+            $lang_field_sets->add($current_product
+                ->localization()
+                ->where('lang', $locale)
+                ->first());
+        }
+
         return view('admin.product.edit')->with([
             'current_product' => $current_product,
             'categories' => $this->categories,
-            'choosed_categories' => $current_product->categories()->get()
+            'choosed_categories' => $current_product->categories()->get(),
+            'lang_field_sets' => $lang_field_sets
         ]);
     }
 
@@ -83,6 +93,11 @@ class ProductController extends Controller
             $product->categories()->detach();
             foreach($request->choosed_categories as $choosed_cat_id) {
                 $product->categories()->attach(Category::find($choosed_cat_id));
+            }
+
+            foreach ($request->input('localization', []) as $k => $i) {
+                $locale = $product->localizations()->where('lang', $k)
+                    ->update($i + ['lang' => $k]);
             }
 
             return redirect()->route('products.index')->with('success', __('adminpanel.action_success'));

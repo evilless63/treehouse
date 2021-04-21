@@ -16,7 +16,15 @@ class CreateSizesTable extends Migration
         Schema::create('sizes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
+            $table->string('slug',255)->unique();
+        });
+
+        Schema::create('size_localizations', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedBigInteger('size_id')->unsigned()->index();
+            $table->string('lang', 2);
+            $table->string('title',255);
+            $table->foreign('size_id')->references('id')->on('sizes')->onDelete('cascade');
         });
     }
 

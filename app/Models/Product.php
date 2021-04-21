@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+
+class Product extends LocalizedModel
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['localization'];
 
     public function categories() {
         return $this->belongsToMany(Category::class);
@@ -18,5 +19,6 @@ class Product extends Model
     public function colorVariations() {
         return $this->hasMany(ColorVariation::class);
     }
+
 
 }

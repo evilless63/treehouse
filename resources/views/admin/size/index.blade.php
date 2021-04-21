@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('page_title')
-    {{ "Товары -- Редактирование" }}
+    {{ "Размеры -- Список" }}
 @endsection
 
 @section('content')
@@ -21,9 +21,9 @@
     </div>
     @endif
 
-    @foreach($products as $product)
+    @foreach($sizes as $size)
     <li style="list-style-type: none">
-        <h3>{{{ $product->getLocalizeTitleRu() }}} ----- <a href="{{route('products.edit', $product->id)}}">{{__('adminpanel.edit')}}</a></h3>
+        <h3>{{{ $size->getLocalizeTitleRu() }}} ----- <a href="{{route('sizes.edit', $size->id)}}">{{__('adminpanel.edit')}}</a></h3>
     </li>
     @endforeach
 @endsection

@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('page_title')
-    {{ "Товары -- Редактирование" }}
+    {{ "Цвета -- Список" }}
 @endsection
 
 @section('content')
@@ -21,9 +21,9 @@
     </div>
     @endif
 
-    @foreach($products as $product)
+    @foreach($colors as $color)
     <li style="list-style-type: none">
-        <h3>{{{ $product->getLocalizeTitleRu() }}} ----- <a href="{{route('products.edit', $product->id)}}">{{__('adminpanel.edit')}}</a></h3>
+        <h3>{{{ $color->getLocalizeTitleRu() }}} ----- <a href="{{route('colors.edit', $color->id)}}">{{__('adminpanel.edit')}}</a></h3>
     </li>
     @endforeach
 @endsection
