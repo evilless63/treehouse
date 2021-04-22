@@ -17,6 +17,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('slug',255)->unique();
+            $table->string('sku',255)->nullable();
+            $table->string('code',255)->nullable();
         });
 
         Schema::create('product_localizations', function(Blueprint $table) {

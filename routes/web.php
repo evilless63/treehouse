@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\SizeController;
+use App\Http\Controllers\ImportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/admin/categories');
 });
 
 // Route::any('/api/v1/post-cats', 'App\Http\Controllers\ServiceController@postRequestCategoryFrom1c');
@@ -41,4 +42,8 @@ Route::prefix('admin')->group(function(){
     ]);
 
     Route::any('/categories/{id}/replicate', [CategoryController::class, 'replicate'])->name('categories.replicate');
+
+    Route::post('/api/v1/importdata/colors', [ImportController::class, 'ImportColorsFrom1c']);
+    Route::post('/api/v1/importdata/sizes', [ImportController::class, 'ImportSizesFrom1c']);
+    Route::post('/api/v1/importdata/products', [ImportController::class, 'ImportProductsFrom1c']);
 });

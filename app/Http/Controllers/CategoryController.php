@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -15,8 +16,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
         return view('admin.category.index')->with([
-            'categories' => $this->categories
+            'categories' => $this->categories,
+            'prod' => Product::where('code', 'НФ-00004717')->first()
         ]);
     }
 
@@ -104,7 +107,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
-        $category = Category::find($id);
+
         $haveBeenUpdated = $category->update($request->all());
         foreach ($request->input('localization', []) as $k => $i) {
             $locale = $category->localizations()->where('lang', $k)

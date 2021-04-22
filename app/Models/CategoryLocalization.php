@@ -11,7 +11,6 @@ class CategoryLocalization extends Model
     use HasFactory;
 
     protected $fillable = ['lang', 'title', 'keywords', 'description'];
-
     public $timestamps = false;
 
     /**

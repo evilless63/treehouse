@@ -9,6 +9,8 @@ class ColorVariation extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function color() {
         return $this->BelongsTo(Color::class);
     }

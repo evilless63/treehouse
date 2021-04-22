@@ -9,6 +9,8 @@ class SizeVariation extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function size() {
         return $this->belongsTo(Size::class);
     }

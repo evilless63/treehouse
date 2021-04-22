@@ -36,4 +36,19 @@
         @endif
     </li>
     @endforeach
+
+    <br>
+    
+    <h4>{{$prod->getLocalizeTitleRu()}} -- {{$prod->sku}} -- {{$prod->code}}</h4>
+    <br>
+    <ul>
+    @foreach($prod->colorVariations()->get() as $colorVariation) 
+        <li>{{$colorVariation->color->getLocalizeTitleRu()}} --- ( {{$colorVariation->color->slug}} )</li>
+        <ul>
+        @foreach($colorVariation->sizeVariations()->get() as $sizeVariation)
+            <li>{{$sizeVariation->size->getLocalizeTitleRu()}} --- ( {{$sizeVariation->size->slug}} ) --- price: {{$sizeVariation->price}} --- stock: {{$sizeVariation->stock}}</li>
+        @endforeach
+        </ul>
+    @endforeach
+    </ul>
 @endsection
