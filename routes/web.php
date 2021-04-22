@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,9 +40,11 @@ Route::prefix('admin')->group(function(){
         'products' => ProductController::class,
         'colors' => ColorController::class,
         'sizes' => SizeController::class,
+        'articles' => ArticleController::class,
     ]);
 
     Route::any('/categories/{id}/replicate', [CategoryController::class, 'replicate'])->name('categories.replicate');
+    Route::any('/articles/{id}/replicate', [ArticleController::class, 'replicate'])->name('articles.replicate');
 
     Route::post('/api/v1/importdata/colors', [ImportController::class, 'ImportColorsFrom1c']);
     Route::post('/api/v1/importdata/sizes', [ImportController::class, 'ImportSizesFrom1c']);

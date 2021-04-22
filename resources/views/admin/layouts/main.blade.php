@@ -13,6 +13,7 @@
             <li><a href="{{route('products.index')}}">Товары</a></li>
             <li><a href="{{route('colors.index')}}">Цвета</a></li>
             <li><a href="{{route('sizes.index')}}">Размеры</a></li>
+            <li><a href="{{route('articles.index')}}">Статьи</a></li>
         </ul>
     </header> 
 

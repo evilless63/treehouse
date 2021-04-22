@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Color;
 use App\Models\Size;
+use App\Models\Article;
 use LaravelLocalization;
 
 class Controller extends BaseController
@@ -21,6 +22,7 @@ class Controller extends BaseController
     protected $locales;
     protected $colors;
     protected $sizes;
+    protected $articles;
     function __construct()
     {
         $this->categories = Category::all();  
@@ -28,5 +30,6 @@ class Controller extends BaseController
         $this->locales = LaravelLocalization::getSupportedLanguagesKeys(); 
         $this->colors = Color::all();
         $this->sizes = Size::all();
+        $this->articles = Article::all();
     }
 }
